@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    </head>
+    <body>
+        <a-scene> 
+            <a-assets>
+                <img id="snow-texture" src="textures/snow.jpg">
+                <img id="sky-texture" src="textures/sky.jpg">
+            </a-assets>
+
+            <a-camera>
+                <a-cursor></a-cursor>
+            </a-camera>
+
+            <a-box
+                src="#snow-texture"
+                repeat="5 5"
+                width="2"
+                height="2"
+                depth="2"
+                position="5 1 -5">
+            </a-box>
+
+        </a-scene>
+  </body>
+</html>
