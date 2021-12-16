@@ -2,43 +2,159 @@
     <head>
         <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
         <script src="components/change-color.component.js"></script>
+        
 
     </head>
     <body>
         <a-assets>
-            <img id="snow-texture" src="textures/snow.jpg">
+            <img id="snow-texture" src="assets/snow.jpg">
+            <img id="wood-texture" src="assets/wood.jpg">
+            <img id="rock-texture" src="assets/rock.jpg">
+            <a-asset-item id="tree" src="assets/tree.glb"></a-asset-item>
+            <audio id="lift" src="assets/lift.mp3"></audio>
         </a-assets>
         <a-scene>
-            <a-cylinder position="0 0 0" radius="0.1" height="15" color="#808080"></a-cylinder>
-
-
-            <a-cylinder id="cabin" 
-                change-color
-                position="0 10 -25" 
-                rotation="90" 
-                radius="1.5" height="6" 
-                color="#808080"
-
-                animation="
-                property: position;
-                
-                to: 20 15 -25;
-                easing: linear;
-                dur: 5000;
-                loop: true;
-                "
-            >
-            </a-cylinder>
-
-            <a-box position="0 1 -30" rotation="0 0 0" scale="150 30 1" src="#snow-texture" repeat="5 5"></a-box>
             
 
+              <a-light type="directional" position="0 100 0" rotation="-90 0 0" target="#directionaltarget" intensity="0.5">
+                <a-entity id="directionaltarget" position="0 10 -10"></a-entity>
+              </a-light>
+
+              <a-light type="spot" position="0 100 0" rotation="-90 0 0" target="#directionaltarget" intensity="0.7">
+                <a-entity id="spottarget" position="0 10 -10"></a-entity>
+              </a-light>
+
+
+
+
+            <a-entity>
+                <!-- cabin bar vertical-->
+                <a-cylinder 
+                    change-color
+                    position="-20 3.5 -22" 
+                    radius="0.2" height="5" 
+                    color="#808080"
+                
+                    animation="
+                    property: position;
+                    
+                    to: 20 21.5 -22;
+                    easing: linear;
+                    dur: 5000;
+                    loop: true;
+                    "
+                >
+                </a-cylinder>
+
+                <!-- cabin bar horizontal-->
+                <a-cylinder 
+                    change-color
+                    position="-20 6 -23" 
+                    rotation="90" 
+                    radius="0.2" height="2.5" 
+                    color="#808080"
+
+                    animation="
+                    property: position;
+                    
+                    to: 20 24 -23;
+                    easing: linear;
+                    dur: 5000;
+                    loop: true;
+                    "
+                >
+                </a-cylinder>
+
+                <!-- cabin-->
+                <a-cylinder
+                    change-color
+                    position="-20 2 -21" 
+                    rotation="90" 
+                    radius="1.5" height="6" 
+                    color="#808080"
+
+                    animation="
+                    property: position;
+                    
+                    to: 20 20 -21;
+                    easing: linear;
+                    dur: 5000;
+                    loop: true;
+                    "
+                >
+            </a-cylinder>
+                
+            <!-- stützen-->
+            <a-cylinder position="-20 2 -25" radius="0.5" height="15" color="#808080"></a-cylinder>
+            <a-cylinder position="0 2 -25" radius="0.5" height="30" color="#808080"></a-cylinder>
+            <a-cylinder position="17 2 -25" radius="0.5" height="45" color="#808080"></a-cylinder>
+            <!-- cabel-->
+            <a-cylinder position="0 15.3 -24" rotation="66 90 0" radius="0.05" height="50" color="#808080"></a-cylinder>
+
+            <!-- houses-->
+            
+            <a-box 
+            position="-38 2 -25" scale="30 20 10" src="#wood-texture"
+            sound="
+            src: #lift;
+            loop: true;
+            autoplay: true;
+            distanceModel: exponential;
+            rolloffFactor: 1.5;
+            "
+            >
+            </a-box>
+            <a-box position="28 18 -22" scale="12 15 12" src="#wood-texture"
+            sound="
+            src: #lift;
+            loop: true;
+            autoplay: true;
+            distanceModel: exponential;
+            rolloffFactor: 1.5;
+            "
+            ></a-box>
+
+            <a-box position="28 11 -23" scale="10  7 10" src="#rock-texture"></a-box>
+        
+            <!-- mountain-->
+        <a-entity>
+            <a-sphere radius="40" position="0 -35 -30" src="#snow-texture" repeat="10 19"> </a-sphere>
+            <a-sphere radius="30" position="-10 -20 -44" src="#snow-texture"  repeat="10 10"></a-sphere>
+            <a-sphere radius="30" position="10 -15 -44" src="#snow-texture"  repeat="10 10"></a-sphere>
+            <a-sphere radius="40" position="30 -20 -44" src="#snow-texture" repeat="10 10"></a-sphere>
+        </a-entity>
+
+        
+
+        </a-light>
+            <!-- trees-->
+            <a-gltf-model
+            shadow="cast: true"
+            position="-10 5 -25"
+            src="#tree">
+            </a-gltf-model>
+
+            <a-gltf-model
+            shadow="cast: true"
+            position="0 5 -15"
+            src="#tree">
+            </a-gltf-model>
+
+            <a-gltf-model
+            shadow="cast: true"
+            position="15 10 -20"
+            src="#tree">
+            </a-gltf-model>
+
+            <!-- wall-->
+            <a-box position="0 1 -30" rotation="0 0 0" scale="150 30 1" src="#snow-texture" repeat="5 5"></a-box>
+            
+            <!-- ground-->
             <a-plane position="0 0 -4" rotation="-90 0 0" width="400" height="400" src="#snow-texture" repeat="10 10"></a-plane>
             <a-sky color="#add8e6"></a-sky>
 
             <a-camera>
                 <a-cursor></a-cursor>
-                <!-- Or <a-entity cursor></a-entity> -->
               </a-camera>
           </a-scene>
 
